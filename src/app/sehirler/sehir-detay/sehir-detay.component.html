@@ -1,0 +1,35 @@
+<form [formGroup]="sehirForm" class="form-group position-fixed">
+    <h3>Sehir Detayları</h3>
+  <div class="form-group">
+      <label  >Sehir Id</label>
+      <input type="text" class="form-control" value="{{inputSecilenSehir?.sehirId}}" 
+      [(ngModel)]="inputSecilenSehir.sehirId"  disabled=true formControlName="id">
+    </div>
+    <div>
+      <label >Sehir Ad</label>
+      <input [ngClass]="{'is-invalid': sehirForm.get('sehirAd').errors && sehirForm.get('sehirAd').touched}"
+      type="text" class="form-control" formControlName="sehirAd" value="{{inputSecilenSehir.sehirAd}}"
+       [(ngModel)]="inputSecilenSehir.sehirAd">
+    </div>
+    <div class="invalid-feedback" *ngIf="sehirForm.get('sehirAd').hasError('required') && sehirForm.get('sehirAd').touched">
+      Hatalı şehir ismi. Şehir karakterleri 3 ile 50 arasında olmalı
+   </div>
+   <br>
+   <div class="btn-group" role="group" aria-label="Basic Example">
+      <button [disabled]="sehirForm.invalid" type="submit" class="btn btn-warning" (mousedown)="sehirGuncelle(inputSecilenSehir)"  >Güncelle</button>
+      <button [disabled]="sehirForm.invalid" type="submit" class="btn btn-primary" (mousedown)="sehirEkle(inputSecilenSehir)" >Ekle</button>
+      <button [disabled]="sehirForm.invalid" type="submit" class="btn btn-danger" (mousedown)="sehirSil(inputSecilenSehir)" onclick="history.go(0)">Sil</button>
+      <!-- onclick="history.go(0)" -->
+   </div>
+     
+<!-- <p>Form value: {{ sehirForm.value | json }}</p>
+<p>Form status: {{ sehirForm.status | json }}</p>
+  -->
+</form>
+ 
+
+
+
+  
+
+

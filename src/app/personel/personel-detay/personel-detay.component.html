@@ -1,0 +1,58 @@
+<!-- 
+<div class="form-group">
+    <label  >Personel Id</label>
+    <input type="text" class="form-control" value="{{inputPersonel?.personelId}}" 
+    disabled=false formControlName="id">
+    <label  >Personel Ad</label>
+    <input type="text" class="form-control" value="{{inputPersonel?.personelAd}} {{inputPersonel?.personelSoyad}}" 
+     formControlName="id">
+    <label  >Sehir</label>
+    <input type="text" class="form-control" value="{{inputPersonel?.sehirAd}}" 
+     formControlName="id">
+    <form class="form-group">
+      <br>
+        <img class="container" src="{{inputPersonel?.resimYol}}" width=300px height=300px>
+    </form>
+     
+</div> -->
+
+<form [formGroup]="personelForm" class="form-group">
+    <div class="invalid-feedback" *ngIf="personelForm.get('Ad').hasError('required') && personelForm.get('Ad').touched">
+        Hatalı şehir ismi. Şehir karakterleri 3 ile 50 arasında olmalı
+     </div>
+     <div class="form-group">
+        <label  >Personel Id</label>
+        <input type="text" class="form-control" value="{{inputPersonel?.personelId}}" 
+        [(ngModel)]="inputPersonel.personelId"  disabled=true formControlName="id">
+      </div>
+    <div class="form-group">
+          <label >Personel Ad</label>
+          <input [ngClass]="{'is-invalid': personelForm.get('Ad').errors && personelForm.get('Ad').touched}"
+          type="text" class="form-control" formControlName="Ad" value="{{inputPersonel.personelAd}}"
+           [(ngModel)]="inputPersonel.personelAd" >
+    </div>
+
+    <div class="form-group">
+        <label >Personel Soyad</label>
+        <input [ngClass]="{'is-invalid': personelForm.get('Soyad').errors && personelForm.get('Soyad').touched}"
+        type="text" class="form-control" formControlName="Soyad" value="{{inputPersonel.personelSoyad}}"
+         [(ngModel)]="inputPersonel.personelSoyad" >
+  </div>
+  <div>
+    <label>Sehirler</label>
+    <form>
+        <select class="custom-select">
+            <option> {{inputPersonel.sehirAd}}</option>
+            <option *ngFor="let item of sList" >{{item.sehirAd}}</option>
+          </select>
+    </form>
+  </div>
+  <br>
+    <div class="btn-group" role="group" aria-label="Basic Example">
+            <button [disabled]="personelForm.invalid" type="submit" class="btn btn-warning"   >Güncelle</button>
+            <button [disabled]="personelForm.invalid" type="submit" class="btn btn-primary" >Ekle</button>
+            <button [disabled]="personelForm.invalid" type="submit" class="btn btn-danger" >Sil</button>
+            <!-- onclick="history.go(0)" -->
+    </div>
+   
+</form>

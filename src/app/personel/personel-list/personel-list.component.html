@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+                <table class="table table-hover table table-bordered table table-ligth">
+                        <tr>
+                            <th>Personel Ad</th>
+                            <th>Sehir Ad</th>
+                        </tr>
+                        <tbody *ngFor="let item of personelList" (mouseover)="SetPersonel(item)">
+                            <tr>
+                                <td>{{item.personelAd}} {{item.personelSoyad}}</td>
+                                <td>{{item.sehirAd}}</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+        <div class="col-md-6">
+            
+            <app-personel-detay [inputPersonel]='secilenPerosnel'></app-personel-detay>
+        </div>
+    </div>
+</div>
